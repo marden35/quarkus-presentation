@@ -3,143 +3,85 @@ import {
   CodeSurferColumns,
   Step,
 } from "code-surfer";
-import { github, vsDark } from "@code-surfer/themes";
+import { github } from "@code-surfer/themes";
+import "prismjs/components/prism-java";
+import { Split } from "mdx-deck";
 
-export const theme = vsDark;
+export const theme = github;
 
-# Hello 👋
+# Inside Quarkus
 
-You are using [MDX Deck](https://github.com/jxnblk/mdx-deck) and [Code Surfer](https://codesurfer.pomb.us)
-
----
-
-<CodeSurfer>
-
-```js title="This is a title" subtitle="and this a subtitle"
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
-
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
-
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
-```
-
-```js
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
-
-function adipiscing(...elit) {
-  if (!elit.sit) {
-    return [];
-  }
-
-  const sed = elit[0];
-  return eiusmod.tempor(sed) ? sed : [sed];
-}
-
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
-
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
-```
-
-```diff 1[10:14],2[15:19],3[22:27],10:12
-
-```
-
-</CodeSurfer>
+Backend Chapter 31/03/2020
 
 ---
 
-<CodeSurferColumns themes={[vsDark, github]}>
+### What's Quarkus
 
-<Step>
+> Quarkus provides a cohesive, fun to use, full-stack framework by leveraging a growing list of over fifty best-of-breed libraries that you love and use. All wired on a standard backbone.
 
-```js
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
+---
+
+### Container First
+
+> Quarkus tailors your application for GraalVM, providing fast boot time and low memory usage by using the so called "compile time boot".
+
+https://quarkus.io/vision/container-first
+
+---
+
+### Tools, Libraries and Frameworks
+
+  - JPA
+  - CDI
+  - JAX-RS
+  - RESTEasy
+  - Netty
+  - ...
+
+---
+
+# GraalVM
+
+---
+
+### What
+
+- GraalVM is a universal virtual machine for running applications written in JavaScript, Python, Ruby, R, JVM-based languages like Java, Scala, Groovy, Kotlin, Clojure, and LLVM-based languages such as C and C++.
+
+https://www.graalvm.org/
+
+---
+
+### How
+
+- Removes the isolation between programming languages and enables interoperability in a shared runtime.
+
+- GraalVM Native Image allows you to AOT compile Java code to a standalone executable, called a native image.
+
+---
+
+# Quarkus in Action
+
+---
+
+<CodeSurferColumns themes={[github]}>
+
+<Step title="Standard AWS Lambda">
+
+```java file=./src/handler.java subtitle="Handler"
 ```
 
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
+```java file=./src/service.java subtitle="Service"
 ```
 
 </Step>
 
-<Step>
+<Step title="AWS Lambda + Quarkus">
 
-```js
-const lorem = (ipsum, dolor, sit) => {
-  const amet = dolor - ipsum;
-  return consectetur.adipiscing(
-    {
-      elit: sed.eiusmod(sit - dolor) / amet + 2,
-    },
-    (tempor, incididunt) => ipsum + amet * incididunt
-  );
-};
-
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
+```java file=./src/handler.java subtitle="Handler + Quarkus"
 ```
 
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
-
-const sed = (eiusmod, tempor, incididunt) => {
-  const ut = tempor - eiusmod;
-  return labore.et(
-    {
-      amet: dolore.magna(incididunt - tempor) / ut + 2,
-    },
-    (aliqua, elit) => eiusmod + ut * elit
-  );
-};
+```java file=./src/service.java subtitle="Service + Quarkus"
 ```
 
 </Step>
@@ -148,5 +90,101 @@ const sed = (eiusmod, tempor, incididunt) => {
 
 ---
 
-docs:  
-[codesurfer.pomb.us](https://codesurfer.pomb.us)
+<CodeSurferColumns>
+
+<Step title="How's that?">
+
+```xml 10:16 file=./src/pom.xml subtitle="Standard pom"
+```
+
+```xml 10:16 file=./src/pom-quarkus.xml subtitle="Quarkus pom"
+```
+
+</Step>
+
+
+</CodeSurferColumns>
+
+---
+
+<CodeSurferColumns>
+
+<Step title="Adding CDI...">
+
+```java file=./src/handler.java
+```
+
+```java file=./src/service.java
+```
+
+</Step>
+
+<Step title="... it's just a matter of annotations!">
+
+```java file=./src/handler-2.java
+```
+
+```java file=./src/service-2.java
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+## Native Compilation
+
+- Quarkus handles native compilation for us using a maven plugin and Docker
+- The output is an executable file
+
+---
+
+<CodeSurfer>
+
+```xml file=./src/pom-native.xml title="Pom Example"
+```
+
+```xml 70:71 file=./src/pom-native.xml title="Pom Example" subtitle="Using this profile"
+```
+
+```xml 77:79 file=./src/pom-native.xml title="Pom Example" subtitle="Specify the docker image we want to use"
+```
+
+```xml 82:96 file=./src/pom-native.xml title="Pom Example" subtitle="Create the uber jar and then the executable"
+```
+
+```xml 97:118 file=./src/pom-native.xml title="Pom Example" subtitle="Create a zip file ready to be deployed to AWS"
+```
+
+```bash title="Pom Example" subtitle="Just run"
+mvn -e clean install -Pnative -Dnative-image.docker-build=true
+```
+
+</CodeSurfer>
+
+---
+
+<CodeSurferColumns>
+
+<Step title="Wrapping up">
+
+#### Pros
+- Business logic remains agnostic
+- Portability
+- Reduced start-up time (nearly no cold start problem)
+
+
+#### Cons
+- Build time
+- Development iteration
+
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+Thank you
+

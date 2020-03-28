@@ -4,7 +4,8 @@
   "scripts": {
     "start": "mdx-deck deck.mdx",
     "build": "mdx-deck build deck.mdx",
-    "test": "echo \"there are no tests\""
+    "test": "echo \"there are no tests\"",
+    "pdf": "mdx-deck pdf deck.mdx"
   },
   "devDependencies": {
     "code-surfer": "3.1.0",
