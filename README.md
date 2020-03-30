@@ -1,6 +1,8 @@
-# MDX Deck + Code Surfer template
+# Backend Chapter - 31/03/2020 - Quarkus
 
 This project was generated with the `npm init code-surfer-deck` command.
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b487d6de-8636-45f0-9b01-5e2b7d1a79a8/deploy-status)](https://app.netlify.com/sites/backend-chapter-quarkus/deploys)
 
 ## Development
 
